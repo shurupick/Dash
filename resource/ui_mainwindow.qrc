@@ -1,0 +1,13 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>line.svg</file>
+    <file>movement-sensor-ser.svg</file>
+    <file>movement-sensor-white.svg</file>
+    <file>light-ser.svg</file>
+    <file>light-white.svg</file>
+    <file>temp_ser.svg</file>
+    <file>pressure-ser.svg</file>
+    <file>pressure-white.svg</file>
+    <file>temp_white.svg</file>
+  </qresource>
+</RCC>
