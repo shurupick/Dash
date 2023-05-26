@@ -9,7 +9,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from pyqtgraph import PlotWidget
 import res_rc
 
 class Ui_MainWindow(object):
@@ -377,14 +376,20 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addWidget(self.frame)
         self.stackedWidget = QtWidgets.QStackedWidget(self.centralwidget)
         self.stackedWidget.setMinimumSize(QtCore.QSize(860, 620))
-        self.stackedWidget.setStyleSheet("background-color: rgb(31, 33, 41);")
+        self.stackedWidget.setStyleSheet("background-color: rgb(41, 43, 51);\n"
+"border: 1px;\n"
+"border-radius: 20px")
         self.stackedWidget.setObjectName("stackedWidget")
         self.page = QtWidgets.QWidget()
+        self.page.setStyleSheet("background-color: rgb(41, 43, 51);\n"
+"border: 1px;\n"
+"border-radius: 20px")
         self.page.setObjectName("page")
         self.stackedWidget.addWidget(self.page)
         self.pageTemperature = QtWidgets.QWidget()
-        self.pageTemperature.setStyleSheet("background-color: rgb(31, 33, 41);\n"
-"border: 0px")
+        self.pageTemperature.setStyleSheet("background-color: rgb(41, 43, 51);\n"
+"border: 1px;\n"
+"border-radius: 20px")
         self.pageTemperature.setObjectName("pageTemperature")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.pageTemperature)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
@@ -419,17 +424,18 @@ class Ui_MainWindow(object):
         self.verticalLayout_12.setContentsMargins(8, 8, 8, 8)
         self.verticalLayout_12.setSpacing(8)
         self.verticalLayout_12.setObjectName("verticalLayout_12")
-        self.graphicsViewTemp = PlotWidget(self.frameGraphTemperature)
+        self.graphicsViewTemp = QtWidgets.QWidget(self.frameGraphTemperature)
         self.graphicsViewTemp.setStyleSheet("background-color: rgb(25, 27, 33);\n"
-"border: 1px;\n"
-"border-radius: 0px")
+"border: 1px; \n"
+"border-radius: 20px")
         self.graphicsViewTemp.setObjectName("graphicsViewTemp")
         self.verticalLayout_12.addWidget(self.graphicsViewTemp)
         self.verticalLayout_4.addWidget(self.frameGraphTemperature)
         self.stackedWidget.addWidget(self.pageTemperature)
         self.pagePressure = QtWidgets.QWidget()
-        self.pagePressure.setStyleSheet("background-color: rgb(31, 33, 41);\n"
-"border: 0px")
+        self.pagePressure.setStyleSheet("background-color: rgb(41, 43, 51);\n"
+"border: 1px;\n"
+"border-radius: 20px")
         self.pagePressure.setObjectName("pagePressure")
         self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.pagePressure)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
@@ -461,8 +467,8 @@ class Ui_MainWindow(object):
         self.frameGraphPressure.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frameGraphPressure.setObjectName("frameGraphPressure")
         self.verticalLayout_13 = QtWidgets.QVBoxLayout(self.frameGraphPressure)
-        self.verticalLayout_13.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_13.setSpacing(0)
+        self.verticalLayout_13.setContentsMargins(8, 8, 8, 8)
+        self.verticalLayout_13.setSpacing(8)
         self.verticalLayout_13.setObjectName("verticalLayout_13")
         self.graphicsViewPressure = QtWidgets.QWidget(self.frameGraphPressure)
         self.graphicsViewPressure.setStyleSheet("background-color: rgb(25, 27, 33);\n"
@@ -473,8 +479,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.addWidget(self.frameGraphPressure)
         self.stackedWidget.addWidget(self.pagePressure)
         self.pageIllumination = QtWidgets.QWidget()
-        self.pageIllumination.setStyleSheet("background-color: rgb(31, 33, 41);\n"
-"border: 0px")
+        self.pageIllumination.setStyleSheet("background-color: rgb(41, 43, 51);\n"
+"border: 1px;\n"
+"border-radius: 20px")
         self.pageIllumination.setObjectName("pageIllumination")
         self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.pageIllumination)
         self.verticalLayout_9.setObjectName("verticalLayout_9")
@@ -508,21 +515,22 @@ class Ui_MainWindow(object):
         self.frameGraphIllumination.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frameGraphIllumination.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frameGraphIllumination.setObjectName("frameGraphIllumination")
-        self.gridLayout = QtWidgets.QGridLayout(self.frameGraphIllumination)
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout.setSpacing(0)
-        self.gridLayout.setObjectName("gridLayout")
-        self.graphicsViewIllunination = QtWidgets.QGraphicsView(self.frameGraphIllumination)
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.frameGraphIllumination)
+        self.verticalLayout_2.setContentsMargins(8, 8, 8, 8)
+        self.verticalLayout_2.setSpacing(8)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.graphicsViewIllunination = QtWidgets.QWidget(self.frameGraphIllumination)
         self.graphicsViewIllunination.setStyleSheet("background-color: rgb(25, 27, 33);\n"
 "border: 1px; \n"
 "border-radius: 20px")
         self.graphicsViewIllunination.setObjectName("graphicsViewIllunination")
-        self.gridLayout.addWidget(self.graphicsViewIllunination, 0, 0, 1, 1)
+        self.verticalLayout_2.addWidget(self.graphicsViewIllunination)
         self.verticalLayout_9.addWidget(self.frameGraphIllumination)
         self.stackedWidget.addWidget(self.pageIllumination)
         self.pageAcceleration = QtWidgets.QWidget()
-        self.pageAcceleration.setStyleSheet("background-color: rgb(31, 33, 41);\n"
-"border: 0px")
+        self.pageAcceleration.setStyleSheet("background-color: rgb(41, 43, 51);\n"
+"border: 1px;\n"
+"border-radius: 20px")
         self.pageAcceleration.setObjectName("pageAcceleration")
         self.verticalLayout_11 = QtWidgets.QVBoxLayout(self.pageAcceleration)
         self.verticalLayout_11.setObjectName("verticalLayout_11")
@@ -555,10 +563,10 @@ class Ui_MainWindow(object):
         self.frameGraphAcceleration.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frameGraphAcceleration.setObjectName("frameGraphAcceleration")
         self.verticalLayout_15 = QtWidgets.QVBoxLayout(self.frameGraphAcceleration)
-        self.verticalLayout_15.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_15.setSpacing(0)
+        self.verticalLayout_15.setContentsMargins(8, 8, 8, 8)
+        self.verticalLayout_15.setSpacing(8)
         self.verticalLayout_15.setObjectName("verticalLayout_15")
-        self.graphicsViewAcceleration = QtWidgets.QGraphicsView(self.frameGraphAcceleration)
+        self.graphicsViewAcceleration = QtWidgets.QWidget(self.frameGraphAcceleration)
         self.graphicsViewAcceleration.setStyleSheet("background-color: rgb(25, 27, 33);\n"
 "border: 1px; \n"
 "border-radius: 20px")
@@ -570,7 +578,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -592,5 +600,6 @@ class Ui_MainWindow(object):
         self.labelPressure.setText(_translate("MainWindow", " Давление"))
         self.labelIllumination.setText(_translate("MainWindow", "Освещенность"))
         self.labelAcceleration.setText(_translate("MainWindow", "Акселерометр"))
+
 
 

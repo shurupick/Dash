@@ -1,24 +1,21 @@
 import sys
+import random
 
 from PyQt5.QtWidgets import QApplication, QMainWindow, QGridLayout, QVBoxLayout
-
-from ui_mainwindow import Ui_MainWindow
-import pyqtgraph as pg
-import numpy as np
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 import matplotlib.pyplot as plt
-import random
-
-
 from matplotlib.backends.qt_compat import QtWidgets
+
+import numpy as np
+
+from ui_mainwindow import Ui_MainWindow
 
 
 class MainWindow(QMainWindow):
 
     def __init__(self):
         super(MainWindow, self).__init__()
-        suka_pidor = 9
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.ui.stackedWidget.setCurrentIndex(0)
@@ -30,7 +27,6 @@ class MainWindow(QMainWindow):
         self.ui.labelLineAcceleration.hide()
         self.ui.labeLinePressure.hide()
         self.ui.labelLineIlluminattion.hide()
-
 
         self.ui.pushButtonTemp.clicked.connect(self.pushButtonTempClicked)
         self.ui.pushButtonPressure.clicked.connect(self.pushButtonPressureClicked)
@@ -287,9 +283,6 @@ class MainWindow(QMainWindow):
         self.ui.labelLineAcceleration.show()
         self.activeAccelerationButton()
         self.ui.stackedWidget.setCurrentIndex(4)
-
-
-
 
 
 if __name__ == "__main__":
