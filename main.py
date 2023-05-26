@@ -19,19 +19,8 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.ui.stackedWidget.setCurrentIndex(0)
-        self.buttons()
         self.plotsPressure()
 
-    def buttons(self):
-        self.ui.labelLineTemp.hide()
-        self.ui.labelLineAcceleration.hide()
-        self.ui.labeLinePressure.hide()
-        self.ui.labelLineIlluminattion.hide()
-
-        self.ui.pushButtonTemp.clicked.connect(self.pushButtonTempClicked)
-        self.ui.pushButtonPressure.clicked.connect(self.pushButtonPressureClicked)
-        self.ui.pushButtonIllumination.clicked.connect(self.pushButtonIlluminationClicked)
-        self.ui.pushButtonAcceleration.clicked.connect(self.pushButtonAccelerationClicked)
 
     def plotsPressure(self):
         layout = QtWidgets.QVBoxLayout(self.ui.graphicsViewPressure)
@@ -41,7 +30,7 @@ class MainWindow(QMainWindow):
         self.canvas = FigureCanvas(self.figure)
 
         self.toolbar = NavigationToolbar(self.canvas, self)
-        self.toolbar.setStyleSheet("background-color: rgb(103, 103, 103);\n"
+        self.toolbar.setStyleSheet("background-color: rgb(255, 255, 255);\n"
                                    "border: 0px;\n"
                                    "border-radius: 17px")
         data = [random.random() for i in range(10)]
@@ -56,237 +45,255 @@ class MainWindow(QMainWindow):
         layout.addWidget(self.toolbar)
         layout.addWidget(self.canvas)
 
+
+class pushButtonsLogic(MainWindow):
+    def __init__(self):
+        super().__init__()
+        self.u = self.ui
+        self.buttons()
+
+    def buttons(self):
+        self.u.labelLineTemp.hide()
+        self.u.labelLineAcceleration.hide()
+        self.u.labeLinePressure.hide()
+        self.u.labelLineIlluminattion.hide()
+
+        self.u.pushButtonTemp.clicked.connect(self.pushButtonTempClicked)
+        self.u.pushButtonPressure.clicked.connect(self.pushButtonPressureClicked)
+        self.u.pushButtonIllumination.clicked.connect(self.pushButtonIlluminationClicked)
+        self.u.pushButtonAcceleration.clicked.connect(self.pushButtonAccelerationClicked)
+
     def activeTemperatureButton(self):
-        self.ui.pushButtonTemp.setStyleSheet(u"QPushButton {\n"
-                                             "	background-color: rgb(25, 27, 33);\n"
-                                             "	border: 0px;\n"
-                                             "	border-image: url(:/icons/temp_white.svg);\n"
-                                             "}\n")
+        self.u.pushButtonTemp.setStyleSheet(u"QPushButton {\n"
+                                            "	background-color: rgb(25, 27, 33);\n"
+                                            "	border: 0px;\n"
+                                            "	border-image: url(:/icons/temp_white.svg);\n"
+                                            "}\n")
 
-        self.ui.pushButtonPressure.setStyleSheet(u"QPushButton {\n"
-                                                 "	\n"
-                                                 "	background-color: rgb(25, 27, 33);\n"
-                                                 "	border-image: url(:/icons/pressure-ser.svg);\n"
-                                                 "}\n"
-                                                 "\n"
-                                                 "QPushButton:hover {\n"
-                                                 "    background-color: rgb(25, 27, 33);\n"
-                                                 "	border-image: url(:/icons/pressure-white.svg);\n"
-                                                 "\n"
-                                                 "}")
+        self.u.pushButtonPressure.setStyleSheet(u"QPushButton {\n"
+                                                "	\n"
+                                                "	background-color: rgb(25, 27, 33);\n"
+                                                "	border-image: url(:/icons/pressure-ser.svg);\n"
+                                                "}\n"
+                                                "\n"
+                                                "QPushButton:hover {\n"
+                                                "    background-color: rgb(25, 27, 33);\n"
+                                                "	border-image: url(:/icons/pressure-white.svg);\n"
+                                                "\n"
+                                                "}")
 
-        self.ui.pushButtonIllumination.setStyleSheet(u"QPushButton {\n"
-                                                     "	\n"
-                                                     "	background-color: rgb(25, 27, 33);\n"
-                                                     "	\n"
-                                                     "	border-image: url(:/icons/light-ser.svg);\n"
-                                                     "}\n"
-                                                     "\n"
-                                                     "QPushButton:hover {\n"
-                                                     "    \n"
-                                                     "	background-color: rgb(25, 27, 33);\n"
-                                                     "	border-image: url(:/icons/light-white.svg);\n"
-                                                     "\n"
-                                                     "}")
+        self.u.pushButtonIllumination.setStyleSheet(u"QPushButton {\n"
+                                                    "	\n"
+                                                    "	background-color: rgb(25, 27, 33);\n"
+                                                    "	\n"
+                                                    "	border-image: url(:/icons/light-ser.svg);\n"
+                                                    "}\n"
+                                                    "\n"
+                                                    "QPushButton:hover {\n"
+                                                    "    \n"
+                                                    "	background-color: rgb(25, 27, 33);\n"
+                                                    "	border-image: url(:/icons/light-white.svg);\n"
+                                                    "\n"
+                                                    "}")
 
-        self.ui.pushButtonAcceleration.setStyleSheet(u"QPushButton {\n"
-                                                     "background-color: rgb(25, 27, 33);\n"
-                                                     "\n"
-                                                     "	border-image: url(:/icons/movement-sensor-ser.svg);\n"
-                                                     "\n"
-                                                     "}\n"
-                                                     "\n"
-                                                     "QPushButton:hover {\n"
-                                                     "background-color: rgb(25, 27, 33);\n"
-                                                     "	border-image: url(:/icons/movement-sensor-white.svg);\n"
-                                                     "\n"
-                                                     "}\n"
-                                                     "")
+        self.u.pushButtonAcceleration.setStyleSheet(u"QPushButton {\n"
+                                                    "background-color: rgb(25, 27, 33);\n"
+                                                    "\n"
+                                                    "	border-image: url(:/icons/movement-sensor-ser.svg);\n"
+                                                    "\n"
+                                                    "}\n"
+                                                    "\n"
+                                                    "QPushButton:hover {\n"
+                                                    "background-color: rgb(25, 27, 33);\n"
+                                                    "	border-image: url(:/icons/movement-sensor-white.svg);\n"
+                                                    "\n"
+                                                    "}\n"
+                                                    "")
 
     def activePressureButton(self):
-        self.ui.pushButtonPressure.setStyleSheet(u"QPushButton {\n"
-                                                 "	\n"
-                                                 "	background-color: rgb(25, 27, 33);\n"
-                                                 "	border-image: url(:/icons/pressure-white.svg);\n"
-                                                 "}\n")
-        self.ui.pushButtonIllumination.setStyleSheet(u"QPushButton {\n"
-                                                     "	\n"
-                                                     "	background-color: rgb(25, 27, 33);\n"
-                                                     "	\n"
-                                                     "	border-image: url(:/icons/light-ser.svg);\n"
-                                                     "}\n"
-                                                     "\n"
-                                                     "QPushButton:hover {\n"
-                                                     "    \n"
-                                                     "	background-color: rgb(25, 27, 33);\n"
-                                                     "	border-image: url(:/icons/light-white.svg);\n"
-                                                     "\n"
-                                                     "}")
+        self.u.pushButtonPressure.setStyleSheet(u"QPushButton {\n"
+                                                "	\n"
+                                                "	background-color: rgb(25, 27, 33);\n"
+                                                "	border-image: url(:/icons/pressure-white.svg);\n"
+                                                "}\n")
+        self.u.pushButtonIllumination.setStyleSheet(u"QPushButton {\n"
+                                                    "	\n"
+                                                    "	background-color: rgb(25, 27, 33);\n"
+                                                    "	\n"
+                                                    "	border-image: url(:/icons/light-ser.svg);\n"
+                                                    "}\n"
+                                                    "\n"
+                                                    "QPushButton:hover {\n"
+                                                    "    \n"
+                                                    "	background-color: rgb(25, 27, 33);\n"
+                                                    "	border-image: url(:/icons/light-white.svg);\n"
+                                                    "\n"
+                                                    "}")
 
-        self.ui.pushButtonAcceleration.setStyleSheet(u"QPushButton {\n"
-                                                     "background-color: rgb(25, 27, 33);\n"
-                                                     "\n"
-                                                     "	border-image: url(:/icons/movement-sensor-ser.svg);\n"
-                                                     "\n"
-                                                     "}\n"
-                                                     "\n"
-                                                     "QPushButton:hover {\n"
-                                                     "background-color: rgb(25, 27, 33);\n"
-                                                     "	border-image: url(:/icons/movement-sensor-white.svg);\n"
-                                                     "\n"
-                                                     "}\n"
-                                                     "")
+        self.u.pushButtonAcceleration.setStyleSheet(u"QPushButton {\n"
+                                                    "background-color: rgb(25, 27, 33);\n"
+                                                    "\n"
+                                                    "	border-image: url(:/icons/movement-sensor-ser.svg);\n"
+                                                    "\n"
+                                                    "}\n"
+                                                    "\n"
+                                                    "QPushButton:hover {\n"
+                                                    "background-color: rgb(25, 27, 33);\n"
+                                                    "	border-image: url(:/icons/movement-sensor-white.svg);\n"
+                                                    "\n"
+                                                    "}\n"
+                                                    "")
 
-        self.ui.pushButtonTemp.setStyleSheet(u"QPushButton {\n"
-                                             "	background-color: rgb(25, 27, 33);\n"
-                                             "	border: 0px;\n"
-                                             "	border-image: url(:/icons/temp_ser.svg);\n"
-                                             "}\n"
-                                             "\n"
-                                             "QPushButton:hover {\n"
-                                             "	background-color: rgb(25, 27, 33);\n"
-                                             "	border: 0px;\n"
-                                             "	border-image: url(:/icons/temp_white.svg);\n"
-                                             "}\n"
-                                             "\n"
-                                             "\n"
-                                             "\n"
-                                             "")
+        self.u.pushButtonTemp.setStyleSheet(u"QPushButton {\n"
+                                            "	background-color: rgb(25, 27, 33);\n"
+                                            "	border: 0px;\n"
+                                            "	border-image: url(:/icons/temp_ser.svg);\n"
+                                            "}\n"
+                                            "\n"
+                                            "QPushButton:hover {\n"
+                                            "	background-color: rgb(25, 27, 33);\n"
+                                            "	border: 0px;\n"
+                                            "	border-image: url(:/icons/temp_white.svg);\n"
+                                            "}\n"
+                                            "\n"
+                                            "\n"
+                                            "\n"
+                                            "")
 
     def activeIlluminationButton(self):
-        self.ui.pushButtonIllumination.setStyleSheet(u"QPushButton {\n"
-                                                     "	\n"
-                                                     "	background-color: rgb(25, 27, 33);\n"
-                                                     "	\n"
-                                                     "	border-image: url(:/icons/light-white.svg);\n"
-                                                     "}\n")
+        self.u.pushButtonIllumination.setStyleSheet(u"QPushButton {\n"
+                                                    "	\n"
+                                                    "	background-color: rgb(25, 27, 33);\n"
+                                                    "	\n"
+                                                    "	border-image: url(:/icons/light-white.svg);\n"
+                                                    "}\n")
 
-        self.ui.pushButtonPressure.setStyleSheet(u"QPushButton {\n"
-                                                 "	\n"
-                                                 "	background-color: rgb(25, 27, 33);\n"
-                                                 "	border-image: url(:/icons/pressure-ser.svg);\n"
-                                                 "}\n"
-                                                 "\n"
-                                                 "QPushButton:hover {\n"
-                                                 "    background-color: rgb(25, 27, 33);\n"
-                                                 "	border-image: url(:/icons/pressure-white.svg);\n"
-                                                 "\n"
-                                                 "}")
+        self.u.pushButtonPressure.setStyleSheet(u"QPushButton {\n"
+                                                "	\n"
+                                                "	background-color: rgb(25, 27, 33);\n"
+                                                "	border-image: url(:/icons/pressure-ser.svg);\n"
+                                                "}\n"
+                                                "\n"
+                                                "QPushButton:hover {\n"
+                                                "    background-color: rgb(25, 27, 33);\n"
+                                                "	border-image: url(:/icons/pressure-white.svg);\n"
+                                                "\n"
+                                                "}")
 
-        self.ui.pushButtonAcceleration.setStyleSheet(u"QPushButton {\n"
-                                                     "background-color: rgb(25, 27, 33);\n"
-                                                     "\n"
-                                                     "	border-image: url(:/icons/movement-sensor-ser.svg);\n"
-                                                     "\n"
-                                                     "}\n"
-                                                     "\n"
-                                                     "QPushButton:hover {\n"
-                                                     "background-color: rgb(25, 27, 33);\n"
-                                                     "	border-image: url(:/icons/movement-sensor-white.svg);\n"
-                                                     "\n"
-                                                     "}\n"
-                                                     "")
+        self.u.pushButtonAcceleration.setStyleSheet(u"QPushButton {\n"
+                                                    "background-color: rgb(25, 27, 33);\n"
+                                                    "\n"
+                                                    "	border-image: url(:/icons/movement-sensor-ser.svg);\n"
+                                                    "\n"
+                                                    "}\n"
+                                                    "\n"
+                                                    "QPushButton:hover {\n"
+                                                    "background-color: rgb(25, 27, 33);\n"
+                                                    "	border-image: url(:/icons/movement-sensor-white.svg);\n"
+                                                    "\n"
+                                                    "}\n"
+                                                    "")
 
-        self.ui.pushButtonTemp.setStyleSheet(u"QPushButton {\n"
-                                             "	background-color: rgb(25, 27, 33);\n"
-                                             "	border: 0px;\n"
-                                             "	border-image: url(:/icons/temp_ser.svg);\n"
-                                             "}\n"
-                                             "\n"
-                                             "QPushButton:hover {\n"
-                                             "	background-color: rgb(25, 27, 33);\n"
-                                             "	border: 0px;\n"
-                                             "	border-image: url(:/icons/temp_white.svg);\n"
-                                             "}\n"
-                                             "\n"
-                                             "\n"
-                                             "\n"
-                                             "")
+        self.u.pushButtonTemp.setStyleSheet(u"QPushButton {\n"
+                                            "	background-color: rgb(25, 27, 33);\n"
+                                            "	border: 0px;\n"
+                                            "	border-image: url(:/icons/temp_ser.svg);\n"
+                                            "}\n"
+                                            "\n"
+                                            "QPushButton:hover {\n"
+                                            "	background-color: rgb(25, 27, 33);\n"
+                                            "	border: 0px;\n"
+                                            "	border-image: url(:/icons/temp_white.svg);\n"
+                                            "}\n"
+                                            "\n"
+                                            "\n"
+                                            "\n"
+                                            "")
 
     def activeAccelerationButton(self):
-        self.ui.pushButtonAcceleration.setStyleSheet(u"QPushButton {\n"
-                                                     "background-color: rgb(25, 27, 33);\n"
-                                                     "\n"
-                                                     "	border-image: url(:/icons/movement-sensor-white.svg);\n"
-                                                     "\n"
-                                                     "}\n")
+        self.u.pushButtonAcceleration.setStyleSheet(u"QPushButton {\n"
+                                                    "background-color: rgb(25, 27, 33);\n"
+                                                    "\n"
+                                                    "	border-image: url(:/icons/movement-sensor-white.svg);\n"
+                                                    "\n"
+                                                    "}\n")
 
-        self.ui.pushButtonTemp.setStyleSheet(u"QPushButton {\n"
-                                             "	background-color: rgb(25, 27, 33);\n"
-                                             "	border: 0px;\n"
-                                             "	border-image: url(:/icons/temp_ser.svg);\n"
-                                             "}\n"
-                                             "\n"
-                                             "QPushButton:hover {\n"
-                                             "	background-color: rgb(25, 27, 33);\n"
-                                             "	border: 0px;\n"
-                                             "	border-image: url(:/icons/temp_white.svg);\n"
-                                             "}\n"
-                                             "\n"
-                                             "\n"
-                                             "\n"
-                                             "")
-        self.ui.pushButtonPressure.setStyleSheet(u"QPushButton {\n"
-                                                 "	\n"
-                                                 "	background-color: rgb(25, 27, 33);\n"
-                                                 "	border-image: url(:/icons/pressure-ser.svg);\n"
-                                                 "}\n"
-                                                 "\n"
-                                                 "QPushButton:hover {\n"
-                                                 "    background-color: rgb(25, 27, 33);\n"
-                                                 "	border-image: url(:/icons/pressure-white.svg);\n"
-                                                 "\n"
-                                                 "}")
+        self.u.pushButtonTemp.setStyleSheet(u"QPushButton {\n"
+                                            "	background-color: rgb(25, 27, 33);\n"
+                                            "	border: 0px;\n"
+                                            "	border-image: url(:/icons/temp_ser.svg);\n"
+                                            "}\n"
+                                            "\n"
+                                            "QPushButton:hover {\n"
+                                            "	background-color: rgb(25, 27, 33);\n"
+                                            "	border: 0px;\n"
+                                            "	border-image: url(:/icons/temp_white.svg);\n"
+                                            "}\n"
+                                            "\n"
+                                            "\n"
+                                            "\n"
+                                            "")
+        self.u.pushButtonPressure.setStyleSheet(u"QPushButton {\n"
+                                                "	\n"
+                                                "	background-color: rgb(25, 27, 33);\n"
+                                                "	border-image: url(:/icons/pressure-ser.svg);\n"
+                                                "}\n"
+                                                "\n"
+                                                "QPushButton:hover {\n"
+                                                "    background-color: rgb(25, 27, 33);\n"
+                                                "	border-image: url(:/icons/pressure-white.svg);\n"
+                                                "\n"
+                                                "}")
 
-        self.ui.pushButtonIllumination.setStyleSheet(u"QPushButton {\n"
-                                                     "	\n"
-                                                     "	background-color: rgb(25, 27, 33);\n"
-                                                     "	\n"
-                                                     "	border-image: url(:/icons/light-ser.svg);\n"
-                                                     "}\n"
-                                                     "\n"
-                                                     "QPushButton:hover {\n"
-                                                     "    \n"
-                                                     "	background-color: rgb(25, 27, 33);\n"
-                                                     "	border-image: url(:/icons/light-white.svg);\n"
-                                                     "\n"
-                                                     "}")
+        self.u.pushButtonIllumination.setStyleSheet(u"QPushButton {\n"
+                                                    "	\n"
+                                                    "	background-color: rgb(25, 27, 33);\n"
+                                                    "	\n"
+                                                    "	border-image: url(:/icons/light-ser.svg);\n"
+                                                    "}\n"
+                                                    "\n"
+                                                    "QPushButton:hover {\n"
+                                                    "    \n"
+                                                    "	background-color: rgb(25, 27, 33);\n"
+                                                    "	border-image: url(:/icons/light-white.svg);\n"
+                                                    "\n"
+                                                    "}")
 
     def pushButtonTempClicked(self):
-        self.ui.labelLineAcceleration.hide()
-        self.ui.labeLinePressure.hide()
-        self.ui.labelLineIlluminattion.hide()
-        self.ui.labelLineTemp.show()
+        self.u.labelLineAcceleration.hide()
+        self.u.labeLinePressure.hide()
+        self.u.labelLineIlluminattion.hide()
+        self.u.labelLineTemp.show()
         self.activeTemperatureButton()
-        self.ui.stackedWidget.setCurrentIndex(1)
+        self.u.stackedWidget.setCurrentIndex(1)
 
     def pushButtonPressureClicked(self):
-        self.ui.labelLineAcceleration.hide()
-        self.ui.labelLineIlluminattion.hide()
-        self.ui.labelLineTemp.hide()
-        self.ui.labeLinePressure.show()
+        self.u.labelLineAcceleration.hide()
+        self.u.labelLineIlluminattion.hide()
+        self.u.labelLineTemp.hide()
+        self.u.labeLinePressure.show()
         self.activePressureButton()
-        self.ui.stackedWidget.setCurrentIndex(2)
+        self.u.stackedWidget.setCurrentIndex(2)
 
     def pushButtonIlluminationClicked(self):
-        self.ui.labelLineAcceleration.hide()
-        self.ui.labeLinePressure.hide()
-        self.ui.labelLineTemp.hide()
-        self.ui.labelLineIlluminattion.show()
+        self.u.labelLineAcceleration.hide()
+        self.u.labeLinePressure.hide()
+        self.u.labelLineTemp.hide()
+        self.u.labelLineIlluminattion.show()
         self.activeIlluminationButton()
-        self.ui.stackedWidget.setCurrentIndex(3)
+        self.u.stackedWidget.setCurrentIndex(3)
 
     def pushButtonAccelerationClicked(self):
-        self.ui.labeLinePressure.hide()
-        self.ui.labelLineIlluminattion.hide()
-        self.ui.labelLineTemp.hide()
-        self.ui.labelLineAcceleration.show()
+        self.u.labeLinePressure.hide()
+        self.u.labelLineIlluminattion.hide()
+        self.u.labelLineTemp.hide()
+        self.u.labelLineAcceleration.show()
         self.activeAccelerationButton()
-        self.ui.stackedWidget.setCurrentIndex(4)
+        self.u.stackedWidget.setCurrentIndex(4)
 
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = MainWindow()
+    window = pushButtonsLogic()
     window.show()
     sys.exit(app.exec())
