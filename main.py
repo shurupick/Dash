@@ -6,7 +6,6 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 import matplotlib.pyplot as plt
 from matplotlib.backends.qt_compat import QtWidgets
-
 import numpy as np
 
 from ui_mainwindow import Ui_MainWindow
@@ -16,41 +15,180 @@ class MainWindow(QMainWindow):
 
     def __init__(self):
         super(MainWindow, self).__init__()
+
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.ui.stackedWidget.setCurrentIndex(0)
+
         self.plotsPressure()
+        self.plotsTemp()
+        self.plotsIlluminattion()
+        self.plotsAcceleration()
 
+    def plotsTemp(self):
+        layoutTemp = QtWidgets.QVBoxLayout(self.ui.graphicsViewTemp)
 
-    def plotsPressure(self):
-        layout = QtWidgets.QVBoxLayout(self.ui.graphicsViewPressure)
-        self.figure = plt.figure(facecolor="#191B21")
-        self.figure.subplots_adjust(left=0.035, bottom=0.045, right=1.0, top=1.0)
+        # создание layout и задание ему цевета
+        # на нем будет распологаться сам рисунок
+        figurePlotTemp = plt.figure(facecolor="#191B21")
 
-        self.canvas = FigureCanvas(self.figure)
+        # задаем размеры рисунка графика на layout
+        figurePlotTemp.subplots_adjust(left=0.075, bottom=0.120, right=1.0, top=0.975)
 
-        self.toolbar = NavigationToolbar(self.canvas, self)
-        self.toolbar.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-                                   "border: 0px;\n"
-                                   "border-radius: 17px")
-        data = [random.random() for i in range(10)]
+        canvasTemp = FigureCanvas(figurePlotTemp)
+
+        toolbarTemp = NavigationToolbar(canvasTemp, self)
+        toolbarTemp.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+                                  "border: 0px;\n"
+                                  "color: rgb(0, 0, 0);\n"
+                                  "border-radius: 17px")
+
+        dataTemp = [random.uniform(20, 27) for i in range(1000)]
 
         # create an axis
-        self.ax = self.figure.add_subplot(111)
 
-        self.ax.set_facecolor("#191B21")
+        axTemp = figurePlotTemp.add_subplot(111)
+
+        axTemp.spines[['top', 'right']].set_visible(False)
+        axTemp.spines['bottom'].set_color("#676767")
+        axTemp.spines['left'].set_color("#676767")
+        axTemp.tick_params(colors='#ffffff', which='both')
+        axTemp.xaxis.label.set_color("#ffffff")
+        axTemp.yaxis.label.set_color("#ffffff")
+        axTemp.set_facecolor("#191B21")  # цвет окна с графиком
+
+        # Подписи для осей:
+        plt.xlabel('Time (s)', fontsize=14)
+        plt.ylabel('Temperature (°C)', fontsize=14)
+
+        plt.ylim(max(dataTemp) + 2, min(dataTemp) - 2)
 
         # plot data
-        self.ax.plot(data, '*-')
-        layout.addWidget(self.toolbar)
-        layout.addWidget(self.canvas)
+        axTemp.plot(dataTemp, '*-')
+        layoutTemp.addWidget(toolbarTemp)
+        layoutTemp.addWidget(canvasTemp)
+
+    def plotsPressure(self):
+        layoutPressure = QtWidgets.QVBoxLayout(self.ui.graphicsViewPressure)
+
+        figurePlotPressure = plt.figure(facecolor="#191B21")
+        figurePlotPressure.subplots_adjust(left=0.075, bottom=0.120, right=1.0, top=0.975)
+
+        canvasPressure = FigureCanvas(figurePlotPressure)
+
+        toolbarPressure = NavigationToolbar(canvasPressure, self)
+        toolbarPressure.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+                                      "border: 0px;\n"
+                                      "color: rgb(0, 0, 0);\n"
+                                      "border-radius: 17px")
+
+        dataPressure = [random.random() for i in range(10)]
+
+        # create an axis
+        axPressure = figurePlotPressure.add_subplot(111)
+
+        axPressure.spines[['top', 'right']].set_visible(False)
+        axPressure.spines['bottom'].set_color("#676767")
+        axPressure.spines['left'].set_color("#676767")
+        axPressure.tick_params(colors='#ffffff', which='both')
+        axPressure.xaxis.label.set_color("#ffffff")
+        axPressure.yaxis.label.set_color("#ffffff")
+        axPressure.set_facecolor("#191B21")  # цвет окна с графиком
+        axPressure.set_facecolor("#191B21")
+
+        # Подписи для осей:
+        plt.xlabel('Time (s)', fontsize=14)
+        plt.ylabel('Pressure ()', fontsize=14)
+
+        plt.ylim(max(dataPressure) + 2, min(dataPressure) - 2)
+
+        # plot data
+        axPressure.plot(dataPressure, '*-')
+        layoutPressure.addWidget(toolbarPressure)
+        layoutPressure.addWidget(canvasPressure)
+
+    def plotsIlluminattion(self):
+        layoutIlluminattion = QtWidgets.QVBoxLayout(self.ui.graphicsViewIllunination)
+
+        figurePlotIlluminattion = plt.figure(facecolor="#191B21")
+        figurePlotIlluminattion.subplots_adjust(left=0.075, bottom=0.120, right=1.0, top=0.975)
+
+        canvasIlluminattion = FigureCanvas(figurePlotIlluminattion)
+
+        toolbarIlluminattion = NavigationToolbar(canvasIlluminattion, self)
+        toolbarIlluminattion.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+                                           "border: 0px;\n"
+                                           "color: rgb(0, 0, 0);\n"
+                                           "border-radius: 17px")
+        dataIlluminattion = [random.random() for i in range(10)]
+
+        # create an axis
+        axIlluminattion = figurePlotIlluminattion.add_subplot(111)
+
+        axIlluminattion.spines[['top', 'right']].set_visible(False)
+        axIlluminattion.spines['bottom'].set_color("#676767")
+        axIlluminattion.spines['left'].set_color("#676767")
+        axIlluminattion.tick_params(colors='#ffffff', which='both')
+        axIlluminattion.xaxis.label.set_color("#ffffff")
+        axIlluminattion.yaxis.label.set_color("#ffffff")
+        axIlluminattion.set_facecolor("#191B21")  # цвет окна с графиком
+
+        # Подписи для осей:
+        plt.xlabel('Time (s)', fontsize=14)
+        plt.ylabel('Illuminattion ()', fontsize=14)
+
+        plt.ylim(max(dataIlluminattion) + 2, min(dataIlluminattion) - 2)
+
+        # plot data
+        axIlluminattion.plot(dataIlluminattion, '*-')
+        layoutIlluminattion.addWidget(toolbarIlluminattion)
+        layoutIlluminattion.addWidget(canvasIlluminattion)
+
+    def plotsAcceleration(self):
+        layoutAcceleration = QtWidgets.QVBoxLayout(self.ui.graphicsViewAcceleration)
+        figurePlotAcceleration = plt.figure(facecolor="#191B21")
+        figurePlotAcceleration.subplots_adjust(left=0.075, bottom=0.120, right=1.0, top=0.975)
+
+        canvasAcceleration = FigureCanvas(figurePlotAcceleration)
+
+        toolbarAcceleration = NavigationToolbar(canvasAcceleration, self)
+        toolbarAcceleration.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+                                          "border: 0px;\n"
+                                          "color: rgb(0, 0, 0);\n"
+                                          "border-radius: 17px")
+        dataAcceleration = [random.random() for i in range(10)]
+
+        # create an axis
+        axAcceleration = figurePlotAcceleration.add_subplot(111)
+
+        axAcceleration.spines[['top', 'right']].set_visible(False)
+        axAcceleration.spines['bottom'].set_color("#676767")
+        axAcceleration.spines['left'].set_color("#676767")
+        axAcceleration.tick_params(colors='#ffffff', which='both')
+        axAcceleration.xaxis.label.set_color("#ffffff")
+        axAcceleration.yaxis.label.set_color("#ffffff")
+        axAcceleration.set_facecolor("#191B21")  # цвет окна с графиком
+
+        # Подписи для осей:
+        plt.xlabel('Time (s)', fontsize=14)
+        plt.ylabel('Acceleration (m/s^2)', fontsize=14)
+
+        plt.ylim(0, max(dataAcceleration) + 2)
+
+        axAcceleration.set_facecolor("#191B21")
+
+        # plot data
+        axAcceleration.plot(dataAcceleration, '*-')
+        layoutAcceleration.addWidget(toolbarAcceleration)
+        layoutAcceleration.addWidget(canvasAcceleration)
 
 
 class pushButtonsLogic(MainWindow):
+
     def __init__(self):
         super().__init__()
         self.u = self.ui
         self.buttons()
+        self.u.stackedWidget.setCurrentIndex(0)
 
     def buttons(self):
         self.u.labelLineTemp.hide()
@@ -295,5 +433,7 @@ class pushButtonsLogic(MainWindow):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = pushButtonsLogic()
+
     window.show()
+
     sys.exit(app.exec())
