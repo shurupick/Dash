@@ -6,6 +6,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 import matplotlib.pyplot as plt
 from matplotlib.backends.qt_compat import QtWidgets
+from scipy.interpolate import make_interp_spline, BSpline
 import numpy as np
 
 from ui_mainwindow import Ui_MainWindow
@@ -42,7 +43,16 @@ class MainWindow(QMainWindow):
                                   "color: rgb(0, 0, 0);\n"
                                   "border-radius: 17px")
 
-        dataTemp = [random.uniform(20, 27) for i in range(1000)]
+        # create a data
+
+        x = np.array([i for i in range(100)])
+        y = np.array([np.random.uniform(22, 25) for i in range(100)])
+
+        xnew = np.linspace(x.min(), x.max(), 400)
+
+        spl = make_interp_spline(x, y, 7)
+        dataTemp = spl(xnew)
+        print(dataTemp)
 
         # create an axis
 
@@ -60,10 +70,10 @@ class MainWindow(QMainWindow):
         plt.xlabel('Time (s)', fontsize=14)
         plt.ylabel('Temperature (°C)', fontsize=14)
 
-        plt.ylim(max(dataTemp) + 2, min(dataTemp) - 2)
+        plt.ylim(min(dataTemp) - 2, max(dataTemp) + 2)
 
         # plot data
-        axTemp.plot(dataTemp, '*-')
+        axTemp.plot(xnew, dataTemp)
         layoutTemp.addWidget(toolbarTemp)
         layoutTemp.addWidget(canvasTemp)
 
@@ -97,7 +107,7 @@ class MainWindow(QMainWindow):
 
         # Подписи для осей:
         plt.xlabel('Time (s)', fontsize=14)
-        plt.ylabel('Pressure ()', fontsize=14)
+        plt.ylabel('Pressure (hPa)', fontsize=14)
 
         plt.ylim(max(dataPressure) + 2, min(dataPressure) - 2)
 
@@ -119,6 +129,7 @@ class MainWindow(QMainWindow):
                                            "border: 0px;\n"
                                            "color: rgb(0, 0, 0);\n"
                                            "border-radius: 17px")
+
         dataIlluminattion = [random.random() for i in range(10)]
 
         # create an axis
@@ -134,7 +145,7 @@ class MainWindow(QMainWindow):
 
         # Подписи для осей:
         plt.xlabel('Time (s)', fontsize=14)
-        plt.ylabel('Illuminattion ()', fontsize=14)
+        plt.ylabel('Illuminattion (lx)', fontsize=14)
 
         plt.ylim(max(dataIlluminattion) + 2, min(dataIlluminattion) - 2)
 

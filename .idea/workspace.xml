@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33a0fd66-7131-4e2b-901f-b91fff6ca0d7" name="Changes" comment="diplom_1.1_newClass_pushbutttonsLogic">
-      <change afterPath="$PROJECT_DIR$/blabla.py" afterDir="false" />
+    <list default="true" id="33a0fd66-7131-4e2b-901f-b91fff6ca0d7" name="Changes" comment="diplom_1.1_newClass_pushbuttonsLogic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -115,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685093491696</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="diplom_1.1_newClass_pushbuttonsLogic">
+      <created>1685304211334</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1685304211334</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -133,6 +139,7 @@
     <MESSAGE value="diplom" />
     <MESSAGE value="diplom_1.0" />
     <MESSAGE value="diplom_1.1_newClass_pushbutttonsLogic" />
-    <option name="LAST_COMMIT_MESSAGE" value="diplom_1.1_newClass_pushbutttonsLogic" />
+    <MESSAGE value="diplom_1.1_newClass_pushbuttonsLogic" />
+    <option name="LAST_COMMIT_MESSAGE" value="diplom_1.1_newClass_pushbuttonsLogic" />
   </component>
 </project>
