@@ -1,5 +1,5 @@
 import sys
-import random
+ #import random
 
 from PyQt5.QtWidgets import QApplication, QMainWindow, QGridLayout, QVBoxLayout
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -44,7 +44,6 @@ class MainWindow(QMainWindow):
                                   "border-radius: 17px")
 
         # create a data
-
         x = np.array([i for i in range(100)])
         y = np.array([np.random.uniform(22, 25) for i in range(100)])
 
@@ -52,10 +51,11 @@ class MainWindow(QMainWindow):
 
         spl = make_interp_spline(x, y, 7)
         dataTemp = spl(xnew)
-        print(dataTemp)
+
+        dispers, mean = statistics(dataTemp)
+
 
         # create an axis
-
         axTemp = figurePlotTemp.add_subplot(111)
 
         axTemp.spines[['top', 'right']].set_visible(False)
@@ -66,11 +66,14 @@ class MainWindow(QMainWindow):
         axTemp.yaxis.label.set_color("#ffffff")
         axTemp.set_facecolor("#191B21")  # цвет окна с графиком
 
+
+
         # Подписи для осей:
         plt.xlabel('Time (s)', fontsize=14)
         plt.ylabel('Temperature (°C)', fontsize=14)
 
         plt.ylim(min(dataTemp) - 2, max(dataTemp) + 2)
+        plt.text(0, max(dataTemp) + 1, f"mean = {round(mean,3)}     dispersion = {round(dispers,3)}" , color = "#ffffff")
 
         # plot data
         axTemp.plot(xnew, dataTemp)
@@ -91,7 +94,17 @@ class MainWindow(QMainWindow):
                                       "color: rgb(0, 0, 0);\n"
                                       "border-radius: 17px")
 
-        dataPressure = [random.random() for i in range(10)]
+        # create a data
+        x = np.array([i for i in range(100)])
+        y = np.array([np.random.uniform(22, 25) for i in range(100)])
+
+        xnew = np.linspace(x.min(), x.max(), 400)
+
+        spl = make_interp_spline(x, y, 7)
+        dataPressure = spl(xnew)
+
+        dispers, mean = statistics(dataPressure)
+
 
         # create an axis
         axPressure = figurePlotPressure.add_subplot(111)
@@ -109,10 +122,11 @@ class MainWindow(QMainWindow):
         plt.xlabel('Time (s)', fontsize=14)
         plt.ylabel('Pressure (hPa)', fontsize=14)
 
-        plt.ylim(max(dataPressure) + 2, min(dataPressure) - 2)
+        plt.ylim(min(dataPressure) - 2, max(dataPressure) + 2)
+        plt.text(0, max(dataPressure) + 1, f"mean = {round(mean,3)}     dispersion = {round(dispers,3)}" , color = "#ffffff")
 
         # plot data
-        axPressure.plot(dataPressure, '*-')
+        axPressure.plot(xnew, dataPressure)
         layoutPressure.addWidget(toolbarPressure)
         layoutPressure.addWidget(canvasPressure)
 
@@ -130,7 +144,16 @@ class MainWindow(QMainWindow):
                                            "color: rgb(0, 0, 0);\n"
                                            "border-radius: 17px")
 
-        dataIlluminattion = [random.random() for i in range(10)]
+        # create a data
+        x = np.array([i for i in range(100)])
+        y = np.array([np.random.uniform(22, 25) for i in range(100)])
+
+        xnew = np.linspace(x.min(), x.max(), 400)
+
+        spl = make_interp_spline(x, y, 7)
+        dataIlluminattion = spl(xnew)
+
+        dispers, mean = statistics(dataIlluminattion)
 
         # create an axis
         axIlluminattion = figurePlotIlluminattion.add_subplot(111)
@@ -147,10 +170,11 @@ class MainWindow(QMainWindow):
         plt.xlabel('Time (s)', fontsize=14)
         plt.ylabel('Illuminattion (lx)', fontsize=14)
 
-        plt.ylim(max(dataIlluminattion) + 2, min(dataIlluminattion) - 2)
+        plt.ylim(min(dataIlluminattion) - 2, max(dataIlluminattion) + 2)
+        plt.text(0, max(dataIlluminattion) + 1, f"mean = {round(mean,3)}     dispersion = {round(dispers,3)}" , color = "#ffffff")
 
         # plot data
-        axIlluminattion.plot(dataIlluminattion, '*-')
+        axIlluminattion.plot(xnew, dataIlluminattion)
         layoutIlluminattion.addWidget(toolbarIlluminattion)
         layoutIlluminattion.addWidget(canvasIlluminattion)
 
@@ -166,7 +190,17 @@ class MainWindow(QMainWindow):
                                           "border: 0px;\n"
                                           "color: rgb(0, 0, 0);\n"
                                           "border-radius: 17px")
-        dataAcceleration = [random.random() for i in range(10)]
+
+        # create a data
+        x = np.array([i for i in range(100)])
+        y = np.array([np.random.uniform(10, 20) for i in range(100)])
+
+        xnew = np.linspace(x.min(), x.max(), 200)
+
+        spl = make_interp_spline(x, y, 7)
+        dataAcceleration = spl(xnew)
+
+        dispers, mean = statistics(dataAcceleration)
 
         # create an axis
         axAcceleration = figurePlotAcceleration.add_subplot(111)
@@ -183,17 +217,19 @@ class MainWindow(QMainWindow):
         plt.xlabel('Time (s)', fontsize=14)
         plt.ylabel('Acceleration (m/s^2)', fontsize=14)
 
-        plt.ylim(0, max(dataAcceleration) + 2)
+        plt.ylim(min(dataAcceleration) - 2, max(dataAcceleration) + 2)
+        plt.text(0, max(dataAcceleration) + 1, f"mean = {round(mean,3)}     dispersion = {round(dispers,3)}" , color = "#ffffff")
 
         axAcceleration.set_facecolor("#191B21")
 
         # plot data
-        axAcceleration.plot(dataAcceleration, '*-')
+        axAcceleration.plot(xnew, dataAcceleration)
         layoutAcceleration.addWidget(toolbarAcceleration)
         layoutAcceleration.addWidget(canvasAcceleration)
 
 
 class pushButtonsLogic(MainWindow):
+
 
     def __init__(self):
         super().__init__()
@@ -439,6 +475,15 @@ class pushButtonsLogic(MainWindow):
         self.u.labelLineAcceleration.show()
         self.activeAccelerationButton()
         self.u.stackedWidget.setCurrentIndex(4)
+
+def statistics(data):
+    mean = sum(data)/len(data)
+    sqrmean = sum([i**2 for i in data])/len(data)
+    meansqr = mean**2
+    dispersion = sqrmean - meansqr
+    return dispersion, mean
+
+
 
 
 if __name__ == "__main__":
